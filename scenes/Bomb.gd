@@ -3,11 +3,6 @@ class_name Bomb extends Node2D
 var wire_scene = preload("res://scenes/Wire.tscn")
 
 
-func start_timer():
-	if has_node("BombClock"):
-		get_node("BombClock").start_timer()
-
-
 func add_wire(from, to):
 	if from == null or to == null or not has_node(from) or not has_node(to):
 		return

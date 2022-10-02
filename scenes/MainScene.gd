@@ -51,9 +51,11 @@ func go_to_next_level():
 
 
 func start_level(level_idx):
+	if level_idx == 0:
+		return
 	var level = level_container.get_child(level_idx)
-	var bomb = level.get_node("Bomb")
-	bomb.start_timer()
+	var clock = level.get_node("Bomb/BombClock")
+	clock.start_timer()
 
 
 func _on_times_up():

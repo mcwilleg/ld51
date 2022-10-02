@@ -10,7 +10,7 @@ export var total_levels = 5
 export var game_over = true
 export var exploded = false
 export var silent = false
-export var debug = true
+export var debug = false
 
 var hovered_object = null
 var held_object = null

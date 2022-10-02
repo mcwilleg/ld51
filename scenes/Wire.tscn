@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Wire.gd" type="Script" id=2]
 [ext_resource path="res://scenes/WireNode.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sounds/pop_fall.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/sounds/pop_rise.wav" type="AudioStream" id=5]
 
 [node name="Wire" type="Node2D"]
 script = ExtResource( 2 )
@@ -15,11 +13,3 @@ default_color = Color( 1, 0.988235, 0.909804, 1 )
 [node name="NodeA" parent="." instance=ExtResource( 3 )]
 
 [node name="NodeB" parent="." instance=ExtResource( 3 )]
-
-[node name="RisingPop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = -20.0
-
-[node name="FallingPop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -20.0

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/263133__pan14__tone-beep.wav-f7f1bae4773ec207e98a68af1b755997.sample"
+path="res://.import/pop_fall_2.wav-c239b604a713e0604a67f177eae00743.sample"
 
 [deps]
 
-source_file="res://assets/sounds/263133__pan14__tone-beep.wav"
-dest_files=[ "res://.import/263133__pan14__tone-beep.wav-f7f1bae4773ec207e98a68af1b755997.sample" ]
+source_file="res://assets/sounds/pop_fall_2.wav"
+dest_files=[ "res://.import/pop_fall_2.wav-c239b604a713e0604a67f177eae00743.sample" ]
 
 [params]
 

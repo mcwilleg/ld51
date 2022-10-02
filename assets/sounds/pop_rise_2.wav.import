@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pop_rise.wav-8130f72a7d68fc64484fc2969cf129a4.sample"
+path="res://.import/pop_rise_2.wav-098f8635fc5169bcce9acf5293d7dc11.sample"
 
 [deps]
 
-source_file="res://assets/sounds/pop_rise.wav"
-dest_files=[ "res://.import/pop_rise.wav-8130f72a7d68fc64484fc2969cf129a4.sample" ]
+source_file="res://assets/sounds/pop_rise_2.wav"
+dest_files=[ "res://.import/pop_rise_2.wav-098f8635fc5169bcce9acf5293d7dc11.sample" ]
 
 [params]
 

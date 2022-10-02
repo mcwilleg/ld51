@@ -1,6 +1,5 @@
 class_name BombClock extends Node2D
 
-var powered = false
 var power_source = null
 
 onready var time_label = $Time
@@ -19,7 +18,7 @@ func _ready():
 
 func _physics_process(_delta):
 	# this condition is met before each bomb starts
-	if timer.is_stopped() and power_source == null:#not powered:
+	if timer.is_stopped() and power_source == null:
 		return
 	var seconds_left = floor(timer.time_left)
 	var millis_left = floor((timer.time_left - seconds_left) * 1000.0)
@@ -40,7 +39,6 @@ func start_timer():
 
 
 func _on_Timer_timeout():
-	#powered = true
 	power_source = get_instance_id()
 	GameState.emit_signal("times_up")
 	if not GameState.silent:

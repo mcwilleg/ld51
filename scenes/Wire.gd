@@ -15,8 +15,6 @@ var wire_direction_b = Vector2.LEFT
 onready var line = $Line
 onready var node_a = $NodeA
 onready var node_b = $NodeB
-onready var rising_pop = $RisingPop
-onready var falling_pop = $FallingPop
 
 
 func _ready():

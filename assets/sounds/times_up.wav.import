@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pop_fall.wav-1a94b65553be8f9ad0c92eaace0d7abf.sample"
+path="res://.import/times_up.wav-19ada0060e9d9c03bb0ebcca056f34ef.sample"
 
 [deps]
 
-source_file="res://assets/sounds/pop_fall.wav"
-dest_files=[ "res://.import/pop_fall.wav-1a94b65553be8f9ad0c92eaace0d7abf.sample" ]
+source_file="res://assets/sounds/times_up.wav"
+dest_files=[ "res://.import/times_up.wav-19ada0060e9d9c03bb0ebcca056f34ef.sample" ]
 
 [params]
 

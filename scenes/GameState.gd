@@ -6,9 +6,10 @@ signal times_up()
 signal explode()
 
 export var current_level = -1
-export var total_levels = 2
+export var total_levels = 3
 export var game_over = true
 export var exploded = false
+export var silent = false
 
 var hovered_object = null
 var held_object = null

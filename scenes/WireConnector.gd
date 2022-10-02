@@ -5,7 +5,7 @@ export var module: NodePath
 
 var connection = null
 var module_node = null
-var powered = false
+var power_source = null
 
 onready var sprite = $Sprite
 onready var click_area = $Sprite/Area2D
@@ -19,6 +19,8 @@ func _ready():
 	lock.modulate = Color.white#lightcoral
 	if module != null and has_node(module):
 		module_node = get_node(module)
+	click_area.connect("mouse_entered", self, "_on_Area2D_mouse_entered")
+	click_area.connect("mouse_exited", self, "_on_Area2D_mouse_exited")
 
 
 func _physics_process(_delta):
@@ -28,16 +30,33 @@ func _physics_process(_delta):
 		sprite.material.set_shader_param("line_thickness", 0.0)
 	click_area.input_pickable = !locked
 	lock.visible = locked
-	_update_powered()
+	power_source = get_power_source([])
+	_update_debug_visual()
 
 
-func _update_powered():
-	if module_node != null and module_node.powered:
-		powered = true
-	elif connection != null and connection.powered:
-		powered = true
+func get_power_source(found):
+	if found.has(self):
+		return null
+	found.append(self)
+	var module_power_source = null
+	var connected_power_source = null
+	if module_node != null and module_node.has_method("get_power_source"):
+		module_power_source = module_node.get_power_source(found)
+	if connection != null and connection.has_method("get_power_source"):
+		connected_power_source = connection.get_power_source(found)
+	if module_power_source != null or connected_power_source != null:
+		if module_power_source != null:
+			return module_power_source
+		else:
+			return connected_power_source
+	return null
+
+
+func _update_debug_visual():
+	if power_source != null:
+		modulate = Color.green
 	else:
-		powered = false
+		modulate = Color.white
 
 
 func _on_Area2D_mouse_entered():

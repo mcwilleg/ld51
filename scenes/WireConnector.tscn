@@ -27,6 +27,3 @@ visible = false
 position = Vector2( 3, 0 )
 rotation = 1.5708
 texture = ExtResource( 3 )
-
-[connection signal="mouse_entered" from="Sprite/Area2D" to="." method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Sprite/Area2D" to="." method="_on_Area2D_mouse_exited"]

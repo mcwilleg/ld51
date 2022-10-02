@@ -8,6 +8,7 @@ export var init_connection_b: NodePath
 var connection_a = null
 var connection_b = null
 var powered = false
+var silent = true
 
 var wire_direction_a = Vector2.RIGHT
 var wire_direction_b = Vector2.LEFT
@@ -15,6 +16,8 @@ var wire_direction_b = Vector2.LEFT
 onready var line = $Line
 onready var node_a = $NodeA
 onready var node_b = $NodeB
+onready var rising_pop = $RisingPop
+onready var falling_pop = $FallingPop
 
 
 func _ready():
@@ -29,6 +32,9 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	_init_connect(node_a, init_connection_a)
 	_init_connect(node_b, init_connection_b)
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	silent = false
 
 
 func _physics_process(_delta):
@@ -97,11 +103,15 @@ func _on_drag(object, _from, to):
 		if connection_a != null:
 			connection_a.connection = null
 			connection_a = null
+			if not silent:
+				falling_pop.play()
 	if object == node_b:
 		node_b.global_position = to
 		if connection_b != null:
 			connection_b.connection = null
 			connection_b = null
+			if not silent:
+				falling_pop.play()
 
 
 func _on_drag_to(object, to):
@@ -111,11 +121,15 @@ func _on_drag_to(object, to):
 		if to != null:
 			node_a.global_position = to.global_position
 			to.connection = self
+			if not silent:
+				rising_pop.play()
 		connection_a = to
 	if object == node_b:
 		if to != null:
 			node_b.global_position = to.global_position
 			to.connection = self
+			if not silent:
+				rising_pop.play()
 		connection_b = to
 
 

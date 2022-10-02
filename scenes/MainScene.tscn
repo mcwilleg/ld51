@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/MainScene.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/LCD.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/sounds/victory_chime.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/fonts/Title.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "death"
 length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("DeathBG/CenterContainer/VBoxContainer/Label:modulate")
+tracks/0/path = NodePath("Camera/DeathBG/CenterContainer/VBoxContainer/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,7 +20,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeathBG/CenterContainer/VBoxContainer/Label2:modulate")
+tracks/1/path = NodePath("Camera/DeathBG/CenterContainer/VBoxContainer/Label2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -28,14 +29,46 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 2, 4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.0500001 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "death_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/DeathBG/CenterContainer/VBoxContainer/Label2:custom_colors/font_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.639216, 0.654902, 0.760784, 1 ), Color( 0.407843, 0.435294, 0.6, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "main_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/MainBG/CenterContainer/VBoxContainer/Label2:custom_colors/font_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.321569, 0.2, 0.247059, 1 ), Color( 0.560784, 0.301961, 0.341176, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "victory"
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("VictoryBG/CenterContainer/VBoxContainer/Label:modulate")
+tracks/0/path = NodePath("Camera/VictoryBG/CenterContainer/VBoxContainer/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,7 +80,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VictoryBG/CenterContainer/VBoxContainer/Label2:modulate")
+tracks/1/path = NodePath("Camera/VictoryBG/CenterContainer/VBoxContainer/Label2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -59,7 +92,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VictoryBG/CenterContainer/VBoxContainer/Label3:modulate")
+tracks/2/path = NodePath("Camera/VictoryBG/CenterContainer/VBoxContainer/Label3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -71,6 +104,22 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "victory_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera/VictoryBG/CenterContainer/VBoxContainer/Label3:custom_colors/font_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.811765, 0.458824, 0.168627, 1 ), Color( 0.670588, 0.317647, 0.188235, 1 ) ]
+}
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -79,100 +128,145 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( -640, 0 )
+z_index = 100
 anchor_mode = 0
 current = true
 smoothing_enabled = true
 
-[node name="LevelContainer" type="Node2D" parent="."]
+[node name="MainBG" type="ColorRect" parent="Camera"]
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+color = Color( 0.160784, 0.113725, 0.168627, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/death = SubResource( 1 )
-anims/victory = SubResource( 2 )
+[node name="CenterContainer" type="CenterContainer" parent="Camera/MainBG"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 640, 360 )
 
-[node name="VictoryBG" type="ColorRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera/MainBG/CenterContainer"]
+margin_left = 188.0
+margin_top = 146.0
+margin_right = 452.0
+margin_bottom = 214.0
+
+[node name="Label" type="Label" parent="Camera/MainBG/CenterContainer/VBoxContainer"]
+margin_right = 264.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 1, 0.682353, 0.439216, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "10-Second Bomb Squad"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Camera/MainBG/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 264.0
+margin_bottom = 68.0
+custom_colors/font_color = Color( 0.560784, 0.301961, 0.341176, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Press SPACE to start"
+align = 1
+valign = 1
+
+[node name="DeathBG" type="ColorRect" parent="Camera"]
+visible = false
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+color = Color( 0.87451, 0.878431, 0.909804, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Camera/DeathBG"]
+margin_right = 609.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 640, 360 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera/DeathBG/CenterContainer"]
+margin_left = 175.0
+margin_top = 146.0
+margin_right = 465.0
+margin_bottom = 214.0
+
+[node name="Label" type="Label" parent="Camera/DeathBG/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 290.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.172549, 0.207843, 0.301961, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "death"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Camera/DeathBG/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.0500001 )
+margin_top = 36.0
+margin_right = 290.0
+margin_bottom = 68.0
+custom_colors/font_color = Color( 0.639216, 0.654902, 0.760784, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "press SPACE to try again"
+align = 1
+valign = 1
+
+[node name="VictoryBG" type="ColorRect" parent="Camera"]
+visible = false
 margin_right = 640.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 640, 360 )
 color = Color( 0.941176, 0.709804, 0.254902, 1 )
 
-[node name="CenterContainer" type="CenterContainer" parent="VictoryBG"]
+[node name="CenterContainer" type="CenterContainer" parent="Camera/VictoryBG"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 640, 360 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VictoryBG/CenterContainer"]
-margin_left = 120.0
-margin_top = 134.0
-margin_right = 520.0
-margin_bottom = 226.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera/VictoryBG/CenterContainer"]
+margin_left = 170.0
+margin_top = 128.0
+margin_right = 470.0
+margin_bottom = 232.0
 
-[node name="Label" type="Label" parent="VictoryBG/CenterContainer/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_right = 400.0
-margin_bottom = 28.0
-custom_colors/font_color = Color( 0.129412, 0.0941176, 0.105882, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "success"
+[node name="Label" type="Label" parent="Camera/VictoryBG/CenterContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.231373, 0.12549, 0.152941, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "mission complete"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="VictoryBG/CenterContainer/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 32.0
-margin_right = 400.0
-margin_bottom = 60.0
-custom_colors/font_color = Color( 0.670588, 0.317647, 0.188235, 1 )
-custom_fonts/font = ExtResource( 2 )
+[node name="Label2" type="Label" parent="Camera/VictoryBG/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 300.0
+margin_bottom = 68.0
+custom_colors/font_color = Color( 0.811765, 0.458824, 0.168627, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "thanks for playing"
 align = 1
 valign = 1
 
-[node name="Label3" type="Label" parent="VictoryBG/CenterContainer/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 64.0
-margin_right = 400.0
-margin_bottom = 92.0
-custom_colors/font_color = Color( 0.670588, 0.317647, 0.188235, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "press space to play again"
+[node name="Label3" type="Label" parent="Camera/VictoryBG/CenterContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 300.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.811765, 0.458824, 0.168627, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "press SPACE to play again"
 align = 1
 valign = 1
 
-[node name="DeathBG" type="ColorRect" parent="."]
-margin_right = 640.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 640, 360 )
+[node name="LevelContainer" type="Node2D" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="DeathBG"]
-margin_right = 609.0
-margin_bottom = 326.0
-rect_min_size = Vector2( 640, 360 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/death = SubResource( 1 )
+anims/death_idle = SubResource( 4 )
+anims/main_idle = SubResource( 3 )
+anims/victory = SubResource( 2 )
+anims/victory_idle = SubResource( 5 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DeathBG/CenterContainer"]
-margin_left = 128.0
-margin_top = 150.0
-margin_right = 512.0
-margin_bottom = 210.0
-
-[node name="Label" type="Label" parent="DeathBG/CenterContainer/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_right = 384.0
-margin_bottom = 28.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "death"
-align = 1
-valign = 1
-
-[node name="Label2" type="Label" parent="DeathBG/CenterContainer/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0.0500001 )
-margin_top = 32.0
-margin_right = 384.0
-margin_bottom = 60.0
-custom_colors/font_color = Color( 0.682353, 0.682353, 0.682353, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "press space to try again"
-align = 1
-valign = 1
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

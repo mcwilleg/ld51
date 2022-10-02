@@ -5,8 +5,9 @@ signal drag_to(object, to)
 signal times_up()
 signal explode()
 
-export var current_level = 0
+export var current_level = -1
 export var total_levels = 2
+export var game_over = true
 export var exploded = false
 
 var hovered_object = null
@@ -14,6 +15,8 @@ var held_object = null
 
 
 func _physics_process(_delta):
+	if exploded:
+		return
 	var mouse_pos = get_global_mouse_position()
 	if Input.is_action_just_pressed("mouse_left"):
 		if hovered_object != null:
@@ -30,5 +33,6 @@ func _physics_process(_delta):
 
 
 func reset():
-	current_level = 0
+	current_level = -1
+	game_over = false
 	exploded = false

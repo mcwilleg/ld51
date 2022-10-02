@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/sprites/explosive.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Explosive.gd" type="Script" id=2]
 [ext_resource path="res://scenes/WireConnector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/482993__v-ktor__large-explosion-1.wav" type="AudioStream" id=4]
 
 [node name="Explosive" type="Node2D"]
 script = ExtResource( 2 )
@@ -14,3 +15,7 @@ centered = false
 [node name="Input" parent="." instance=ExtResource( 3 )]
 position = Vector2( 85, 126 )
 module = NodePath("..")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0

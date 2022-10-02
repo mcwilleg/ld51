@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/sprites/wire_node.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Wire.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/pop_fall.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/pop_rise.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
@@ -32,6 +34,14 @@ z_index = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NodeB/AreaB"]
 shape = SubResource( 1 )
+
+[node name="RisingPop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+
+[node name="FallingPop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
 
 [connection signal="mouse_entered" from="NodeA/AreaA" to="." method="_on_AreaA_mouse_entered"]
 [connection signal="mouse_exited" from="NodeA/AreaA" to="." method="_on_AreaA_mouse_exited"]

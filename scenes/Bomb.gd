@@ -4,8 +4,8 @@ var wire_scene = preload("res://scenes/Wire.tscn")
 
 
 func start_timer():
-	if has_node("BombClock/Timer"):
-		get_node("BombClock/Timer").start()
+	if has_node("BombClock"):
+		get_node("BombClock").start_timer()
 
 
 func add_wire(from, to):

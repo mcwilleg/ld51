@@ -53,6 +53,8 @@ func get_power_source(found):
 
 
 func _update_debug_visual():
+	if not GameState.debug:
+		return
 	if power_source != null:
 		modulate = Color.green
 	else:

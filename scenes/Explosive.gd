@@ -1,10 +1,8 @@
 extends Node2D
 
-var powered = false
 var power_source = null
 var exploded = false
 
-onready var connector = $Input
 onready var audio = $Audio
 
 
@@ -21,6 +19,9 @@ func get_power_source(found):
 	if found.has(self):
 		return null
 	found.append(self)
-	if connector != null and connector.has_method("get_power_source"):
-		return connector.get_power_source(found)
+	for child in get_children():
+		if child.has_method("get_power_source"):
+			var child_source = child.get_power_source(found)
+			if child_source != null:
+				return child_source
 	return null

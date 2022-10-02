@@ -1,20 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/Level1.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Bomb.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/AndGate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/OrGate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/LightNode.tscn" type="PackedScene" id=4]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Bomb" parent="." instance=ExtResource( 2 )]
 
-[node name="AndGate" parent="Bomb" instance=ExtResource( 3 )]
-position = Vector2( 288, 176 )
-
-[node name="Input1" parent="Bomb/AndGate" index="2"]
+[node name="Input" parent="Bomb/Explosive" index="1"]
 locked = true
+
+[node name="OrGate" parent="Bomb" instance=ExtResource( 3 )]
+position = Vector2( 328, 152 )
+
+[node name="Input2" parent="Bomb/OrGate" index="3"]
+locked = true
+
+[node name="LightNode" parent="Bomb" instance=ExtResource( 4 )]
+position = Vector2( 304, 224 )
 
 [editable path="Bomb"]
 [editable path="Bomb/Explosive"]
-[editable path="Bomb/AndGate"]
+[editable path="Bomb/BombClock"]
+[editable path="Bomb/OrGate"]

@@ -51,10 +51,11 @@ func _on_drag(object, _from, to):
 	if connector != null:
 		connector.connection = null
 		connector = null
-		falling_pop.play()
+		if not GameState.silent:
+			falling_pop.play()
 
 
-func _on_drag_to(object, to):
+func _on_drag_to(object, to, on_load = false):
 	if object != self:
 		return
 	if to != null and not (to is WireConnector):
@@ -62,7 +63,8 @@ func _on_drag_to(object, to):
 	if to != null:
 		global_position = to.global_position
 		to.connection = self
-		rising_pop.play()
+		if not GameState.silent and not on_load:
+			rising_pop.play()
 	connector = to
 
 
@@ -92,6 +94,8 @@ func _update_node_colors():
 
 
 func _update_debug_visual():
+	if not GameState.debug:
+		return
 	if power_source != null:
 		modulate = Color.green
 	else:

@@ -56,4 +56,4 @@ func _init_connect(wire_end, node_path):
 	if node_path == null or not has_node(node_path):
 		return
 	var node = get_node(node_path)
-	wire_end._on_drag_to(wire_end, node)
+	wire_end._on_drag_to(wire_end, node, true)

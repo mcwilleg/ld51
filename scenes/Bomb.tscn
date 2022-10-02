@@ -2,63 +2,46 @@
 
 [ext_resource path="res://scenes/BombClock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/bomb_bg.png" type="Texture" id=2]
-[ext_resource path="res://scenes/WireConnector.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Wire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Bomb.gd" type="Script" id=3]
+[ext_resource path="res://scenes/BatteryPack.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Explosive.tscn" type="PackedScene" id=5]
 
 [node name="Bomb" type="Node2D"]
+script = ExtResource( 3 )
 
-[node name="BG" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 640.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 640, 360 )
 mouse_filter = 2
-color = Color( 0.129412, 0.129412, 0.129412, 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 360 )
+mouse_filter = 2
+custom_constants/margin_right = 150
+custom_constants/margin_top = 78
+custom_constants/margin_left = 150
+custom_constants/margin_bottom = 78
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/MarginContainer"]
+margin_left = 150.0
+margin_top = 78.0
+margin_right = 490.0
+margin_bottom = 282.0
 texture = ExtResource( 2 )
-centered = false
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="Explosive" parent="." instance=ExtResource( 5 )]
-position = Vector2( 9, 9 )
+position = Vector2( 160, 88 )
 
 [node name="BombClock" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 304 )
+position = Vector2( 360, 224 )
 
-[node name="WireConnector" parent="." instance=ExtResource( 3 )]
-position = Vector2( 94, 59 )
-module = NodePath("../Explosive")
-
-[node name="WireConnector2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 94, 157 )
-module = NodePath("../Explosive")
-
-[node name="WireConnector3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 94, 188 )
-module = NodePath("../Explosive")
-
-[node name="WireConnector4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 478, 212 )
-rotation = 3.14159
-module = NodePath("../WireConnector5")
-
-[node name="WireConnector5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 495, 212 )
-locked = true
-module = NodePath("../WireConnector4")
-
-[node name="WireConnector6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 620, 299 )
-rotation = -1.5708
-locked = true
-module = NodePath("../WireConnector4")
-
-[node name="Wire" parent="." instance=ExtResource( 4 )]
-position = Vector2( 287, 197 )
-
-[node name="Wire2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 570, 252 )
-init_connection_a = NodePath("../WireConnector5")
-init_connection_b = NodePath("../WireConnector6")
+[node name="BatteryPack" parent="." instance=ExtResource( 4 )]
+position = Vector2( 256, 88 )

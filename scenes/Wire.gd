@@ -36,6 +36,16 @@ func _physics_process(_delta):
 	_update_node_colors()
 	_update_wire_directions()
 	_update_wire()
+	_update_powered()
+
+
+func _update_powered():
+	if connection_a != null and connection_a.powered:
+		powered = true
+	elif connection_b != null and connection_b.powered:
+		powered = true
+	else:
+		powered = false
 
 
 func _update_node_outlines():
@@ -51,13 +61,17 @@ func _update_node_outlines():
 
 func _update_node_colors():
 	if connection_a != null and connection_a.locked:
-		node_a.modulate = Color.lightcoral
+		#node_a.modulate = Color.white#lightcoral
+		node_a.frame = 1
 	else:
-		node_a.modulate = Color.white
+		#node_a.modulate = Color.white
+		node_a.frame = 0
 	if connection_b != null and connection_b.locked:
-		node_b.modulate = Color.lightcoral
+		#node_b.modulate = Color.white#lightcoral
+		node_b.frame = 1
 	else:
-		node_b.modulate = Color.white
+		#node_b.modulate = Color.white
+		node_b.frame = 0
 
 
 func _update_wire_directions():
@@ -110,16 +124,6 @@ func _init_connect(wire_end, node_path):
 		return
 	var node = get_node(node_path)
 	_on_drag_to(wire_end, node)
-
-
-func power():
-	if powered:
-		return
-	powered = true
-	if connection_a != null and connection_a.has_method("power"):
-		connection_a.power()
-	if connection_b != null and connection_b.has_method("power"):
-		connection_b.power()
 
 
 func _on_AreaA_mouse_entered():

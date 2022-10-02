@@ -11,10 +11,11 @@ script = ExtResource( 2 )
 
 [node name="Line" type="Line2D" parent="."]
 width = 1.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 1, 0.988235, 0.909804, 1 )
 
 [node name="NodeA" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+hframes = 2
 
 [node name="AreaA" type="Area2D" parent="NodeA"]
 z_index = 10
@@ -24,6 +25,7 @@ shape = SubResource( 1 )
 
 [node name="NodeB" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+hframes = 2
 
 [node name="AreaB" type="Area2D" parent="NodeB"]
 z_index = 10

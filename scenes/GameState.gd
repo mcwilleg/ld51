@@ -2,14 +2,15 @@ extends Node2D
 
 signal drag(object, from, to)
 signal drag_to(object, to)
+signal times_up()
 signal explode()
+
+export var current_level = 0
+export var total_levels = 2
+export var exploded = false
 
 var hovered_object = null
 var held_object = null
-
-
-func _ready():
-	connect("explode", self, "_on_explode")
 
 
 func _physics_process(_delta):
@@ -19,7 +20,7 @@ func _physics_process(_delta):
 			held_object = hovered_object
 	if Input.is_action_just_released("mouse_left"):
 		if hovered_object != null:
-			print(str(held_object) + " > " + str(hovered_object))
+			#print(str(held_object) + " > " + str(hovered_object))
 			emit_signal("drag_to", held_object, hovered_object)
 		held_object = null
 	if Input.is_action_pressed("mouse_left"):
@@ -28,5 +29,6 @@ func _physics_process(_delta):
 			emit_signal("drag", held_object, from_pos, mouse_pos)
 
 
-func _on_explode():
-	print("bomb exploded!")
+func reset():
+	current_level = 0
+	exploded = false
